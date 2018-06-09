@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.4
+-- version 4.8.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 06, 2018 at 06:47 AM
--- Server version: 10.1.28-MariaDB
--- PHP Version: 7.1.10
+-- Generation Time: Jun 09, 2018 at 01:05 PM
+-- Server version: 10.1.16-MariaDB
+-- PHP Version: 5.6.24
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -29,23 +29,8 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `casebase` (
-  `id_casebase` varchar(6) NOT NULL,
+  `id_casebase` varchar(3) NOT NULL,
   `id_penyakit` varchar(6) NOT NULL,
-  `id_gejala` varchar(6) NOT NULL,
-  `gejala` varchar(30) DEFAULT NULL,
-  `penyakit` varchar(20) DEFAULT NULL,
-  `keterangan` text
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `casebase1`
---
-
-CREATE TABLE `casebase1` (
-  `No` int(11) NOT NULL,
-  `id_pasien` varchar(3) NOT NULL,
   `g1` int(1) NOT NULL,
   `g2` int(1) NOT NULL,
   `g3` int(1) NOT NULL,
@@ -73,6 +58,56 @@ CREATE TABLE `casebase1` (
   `g25` int(1) NOT NULL,
   `penyakit` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `casebase`
+--
+
+INSERT INTO `casebase` (`id_casebase`, `id_penyakit`, `g1`, `g2`, `g3`, `g4`, `g5`, `g6`, `g7`, `g8`, `g9`, `g10`, `g11`, `g12`, `g13`, `g14`, `g15`, `g16`, `g17`, `g18`, `g19`, `g20`, `g21`, `g22`, `g23`, `g24`, `g25`, `penyakit`) VALUES
+('C01', 'PEN001', 1, 1, 0, 0, 1, 1, 1, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 'Bleferitis'),
+('C02', 'PEN001', 1, 1, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 'Bleferitis'),
+('C03', 'PEN001', 1, 0, 1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 'Bleferitis'),
+('C04', 'PEN001', 1, 1, 0, 0, 1, 0, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 'Bleferitis'),
+('C05', 'PEN001', 1, 1, 0, 0, 1, 1, 1, 1, 0, 0, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 1, 'Bleferitis'),
+('C06', 'PEN001', 0, 1, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 'Bleferitis'),
+('C07', 'PEN001', 0, 1, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 'Bleferitis'),
+('C08', 'PEN001', 1, 1, 0, 0, 1, 1, 1, 0, 1, 1, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1, 'Bleferitis'),
+('C09', 'PEN001', 1, 1, 0, 0, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 1, 0, 1, 'Bleferitis'),
+('C10', 'PEN002', 1, 1, 1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 1, 0, 1, 0, 0, 'Dakriosistitis'),
+('C11', 'PEN002', 1, 1, 1, 0, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 1, 0, 0, 'Dakriosistitis'),
+('C12', 'PEN002', 1, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 1, 0, 1, 0, 0, 'Dakriosistitis'),
+('C13', 'PEN002', 1, 1, 0, 0, 0, 0, 1, 1, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 1, 0, 1, 0, 0, 'Dakriosistitis'),
+('C14', 'PEN002', 1, 1, 1, 0, 0, 0, 0, 1, 1, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 'Dakriosistitis'),
+('C15', 'PEN002', 1, 0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 1, 1, 1, 0, 0, 'Dakriosistitis'),
+('C16', 'PEN002', 1, 1, 1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 'Dakriosistitis'),
+('C17', 'PEN002', 0, 1, 1, 0, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0, 1, 0, 1, 0, 0, 'Dakriosistitis'),
+('C18', 'PEN002', 1, 1, 0, 0, 0, 0, 0, 1, 0, 1, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0, 1, 0, 1, 0, 0, 'Dakriosistitis'),
+('C19', 'PEN003', 1, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 'Episkleritis'),
+('C20', 'PEN003', 0, 1, 0, 0, 1, 0, 1, 0, 1, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 'Episkleritis'),
+('C21', 'PEN003', 0, 1, 0, 0, 0, 1, 1, 0, 1, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 'Episkleritis'),
+('C22', 'PEN003', 1, 0, 0, 0, 1, 0, 1, 1, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 'Episkleritis'),
+('C23', 'PEN003', 1, 0, 0, 0, 0, 1, 1, 1, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 'Episkleritis'),
+('C24', 'PEN003', 0, 1, 0, 0, 0, 1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 'Episkleritis'),
+('C25', 'PEN003', 1, 0, 0, 0, 1, 0, 1, 1, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 'Episkleritis'),
+('C26', 'PEN003', 1, 0, 0, 0, 0, 1, 0, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 'Episkleritis'),
+('C27', 'PEN003', 1, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 'Episkleritis'),
+('C28', 'PEN003', 0, 1, 0, 0, 0, 1, 0, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 'Episkleritis'),
+('C29', 'PEN003', 1, 0, 0, 0, 1, 1, 1, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 'Episkleritis'),
+('C30', 'PEN004', 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 1, 0, 1, 'Glaukoma'),
+('C31', 'PEN004', 0, 0, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 1, 'Glaukoma'),
+('C32', 'PEN004', 0, 0, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 1, 'Glaukoma'),
+('C33', 'PEN004', 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 1, 0, 0, 1, 'Glaukoma'),
+('C34', 'PEN004', 0, 0, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 1, 'Glaukoma'),
+('C35', 'PEN004', 0, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 1, 'Glaukoma'),
+('C36', 'PEN004', 0, 0, 1, 1, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 1, 'Glaukoma'),
+('C37', 'PEN005', 1, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0, 1, 0, 0, 0, 'Hordeolum'),
+('C38', 'PEN005', 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 0, 1, 1, 0, 1, 0, 0, 1, 0, 'Hordeolum'),
+('C39', 'PEN005', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 'Hordeolum'),
+('C40', 'PEN005', 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 1, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 'Hordeolum'),
+('C41', 'PEN005', 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 1, 'Hordeolum'),
+('C42', 'PEN005', 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 1, 0, 0, 1, 0, 1, 0, 0, 'Hordeolum'),
+('C43', 'PEN005', 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 'Hordeolum'),
+('C44', 'PEN005', 1, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 'Hordeolum');
 
 -- --------------------------------------------------------
 
@@ -192,15 +227,7 @@ INSERT INTO `penyakit` (`id_penyakit`, `nm_penyakit`, `keterangan`) VALUES
 --
 ALTER TABLE `casebase`
   ADD PRIMARY KEY (`id_casebase`),
-  ADD KEY `id_penyakit` (`id_penyakit`),
-  ADD KEY `id_gejala` (`id_gejala`);
-
---
--- Indexes for table `casebase1`
---
-ALTER TABLE `casebase1`
-  ADD PRIMARY KEY (`No`),
-  ADD KEY `id_pasien` (`id_pasien`);
+  ADD KEY `id_penyakit` (`id_penyakit`);
 
 --
 -- Indexes for table `diagnosa`
@@ -227,16 +254,6 @@ ALTER TABLE `penyakit`
   ADD PRIMARY KEY (`id_penyakit`);
 
 --
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `casebase1`
---
-ALTER TABLE `casebase1`
-  MODIFY `No` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- Constraints for dumped tables
 --
 
@@ -244,8 +261,7 @@ ALTER TABLE `casebase1`
 -- Constraints for table `casebase`
 --
 ALTER TABLE `casebase`
-  ADD CONSTRAINT `casebase_ibfk_1` FOREIGN KEY (`id_penyakit`) REFERENCES `penyakit` (`id_penyakit`),
-  ADD CONSTRAINT `casebase_ibfk_2` FOREIGN KEY (`id_gejala`) REFERENCES `gejala` (`id_gejala`);
+  ADD CONSTRAINT `casebase_ibfk_1` FOREIGN KEY (`id_penyakit`) REFERENCES `penyakit` (`id_penyakit`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
