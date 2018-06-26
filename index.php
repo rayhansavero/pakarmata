@@ -87,7 +87,7 @@ $idpasien = idpasien();
 					</a>
 				</li>
 				<li>
-					<a href="" target="_blank">
+					<a href="login.php" target="_blank">
 						<i class="material-icons">power_setting_new</i> Logout
 					</a>
 				</li>
@@ -274,5 +274,3 @@ $idpasien = idpasien();
 		});
 	</script>
 </html>
-
-
