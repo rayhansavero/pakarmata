@@ -1,32 +1,5 @@
 <?php //-----------------KONEKSI DB-------------------
 $con = mysqli_connect('localhost','root','','mata');
-
-//-----------------FUNGSI MEMBUAT ID PASIEN-------------------
-function idpasien() {
-	$con = mysqli_connect('localhost','root','','mata');
-	$query = mysqli_query($con,"SELECT id_pasien FROM diagnosa ORDER BY id_pasien DESC LIMIT 0,1") or die(mysql_error());
-	list ($no_temp) = mysqli_fetch_row($query);
-
-	if ($no_temp == '') {
-		$no_urut = 'P01';
-
-		} else {
-		$jum = substr($no_temp,1,3);
-		$jum++;
-		if($jum <= 9) {
-			$no_urut = 'P0' . $jum;
-		}
-		elseif ($jum <= 99) {
-			$no_urut = 'P' . $jum;
-		}
-		else {
-			die("Nomor urut melebih batas");
-		}
-	}
-		return $no_urut;
-}
-
-$idpasien = idpasien();
 ?>
 
 <!doctype html>
@@ -82,12 +55,12 @@ $idpasien = idpasien();
 	   <div class="collapse navbar-collapse" id="navigation-index">
 	   	<ul class="nav navbar-nav navbar-right">
 				<li>
-					<a href="components-documentation.html" target="_blank">
-						<i class="material-icons">library_books</i> Riwayat
+					<a href="index.php">
+						<i class="material-icons">home</i> Home
 					</a>
 				</li>
 				<li>
-					<a href="" target="_blank">
+					<a href="">
 						<i class="material-icons">power_setting_new</i> Logout
 					</a>
 				</li>
@@ -117,7 +90,7 @@ $idpasien = idpasien();
 			<div class="container">
 
 
-				<div class="col-md-6">
+				<div class="col-md-12">
 					<div class="card card-nav-tabs card-plain">
 						<div class="header header-primary">
 							<!-- colors: "header-primary", "header-info", "header-success", "header-warning", "header-danger" -->
@@ -125,47 +98,8 @@ $idpasien = idpasien();
 								<div class="nav-tabs-wrapper">
 									<ul class="nav nav-tabs" data-tabs="tabs">
 										<li class="active"><a data-toggle="tab">
-											<i class="material-icons">face</i>
-											Data Diri Pasien</a>
-										</li>
-									</ul>
-								</div>
-							</div>
-						</div>
-
-
-						<div class="content">
-							<div class="tab-content">
-                                <?php
-                                    $tampil = mysqli_query($con, "select * from diagnosa");
-                                         while($datadiri = mysqli_fetch_array($tampil)){
-                                    ?>
-                                   
-                                        Nama : <?php echo $datadiri['nm_pasien'];?><br>
-                                        Jenis Kelamin : <?php echo $datadiri['jk'];?><br>
-                                        Alamat : <?php echo $datadiri['alamat_pasien'];?><br>
-                                        Umur : <?php echo $datadiri['umur'];?><br>
-                                        Pekerjaan : <?php echo $datadiri['pekerjaan'];?><br>
-                                   
-                                    <?php } ?>
-							</div>
-						</div>
-
-
-					</div>
-				</div>
-
-
-				<div class="col-md-6">
-					<div class="card card-nav-tabs card-plain">
-						<div class="header header-primary">
-							<!-- colors: "header-primary", "header-info", "header-success", "header-warning", "header-danger" -->
-							<div class="nav-tabs-navigation">
-								<div class="nav-tabs-wrapper">
-									<ul class="nav nav-tabs" data-tabs="tabs">
-										<li class="active"><a data-toggle="tab">
-											<i class="material-icons">healing</i>
-											Gejala yang Dirasakan</a>
+											<i class="material-icons">library_books</i>
+											Riwayat Diagnosa Penyakit Mata</a>
 										</li>
 									</ul>
 								</div>
@@ -176,22 +110,62 @@ $idpasien = idpasien();
 						<div class="content">
 							<div class="tab-content">
 
+								<table class="table">
+									<thead>
+										<tr>
+											<th class="text-center">#</th>
+											<th>Nama Pasien</th>
+											<th>Jenis Kelamin</th>
+											<th>Alamat Pasien</th>
+											<th>Umur</th>
+											<th>Pekerjaan</th>
+											<th>Gejala yang dirasakan</th>
+											<th>Hasil Diagnosa</th>
+										</tr>
+									</thead>
+									<tbody>
+										<?php
+										$no = 1;
+										$query = mysqli_query($con,"SELECT * FROM diagnosa");
+										while ($data = mysqli_fetch_row($query))
+										{
+										?>
+										<tr>
+											<td class="text-center"><?php echo $no++; ?></td>
+											<td><?php echo $data[2]; ?></td>
+											<td><?php echo $data[3]; ?></td>
+											<td><?php echo $data[4]; ?></td>
+											<td><?php echo $data[5]; ?></td>
+											<td><?php echo $data[6]; ?></td>
+											<td>
+												<?php
+												//echo $data[1];
+												$query2 = mysqli_query($con,"SELECT * FROM keluhan WHERE id_keluhan='$data[1]'");
+												while ($data = mysqli_fetch_row($query2))
+												{
+													//echo $data[1];
+													$query3 = mysqli_query($con,"SELECT * FROM gejala WHERE id_gejala='$data[1]'");
+													while ($data = mysqli_fetch_row($query3))
+													{
+														echo $data[1];
+														?>
+														<br>
+														<?php
+													}
+												}
+												?>
+											</td>
+											<td><?php echo $data[7]; ?></td>											
+										</tr>
+										<?php } ?>
+									</tbody>
+								</table>
+
 							</div>
-						</div>						
+						</div>
 
 					</div>
 				</div>
-
-				<div class="row text-center">
-					<div class="col-md-8 col-md-offset-2">
-						<h4>Sebelum anda klik tombol submit, pastikan data yang dicentang sesuai dengan gejala-gejala yang anda alami agar diagnosa yang kami berikan tepat dan benar</h4>
-					</div>
-					<div class="col-xs-8 col-xs-offset-2 col-sm-4 col-sm-offset-4">
-						<button type="submit" class="btn btn-primary btn-lg" name="submit">Submit</button>
-					</div>
-				</div>
-</form>
-
 			</div>
 		</div>
 
@@ -230,5 +204,3 @@ $idpasien = idpasien();
 		});
 	</script>
 </html>
-
-

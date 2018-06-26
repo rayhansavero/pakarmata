@@ -27,6 +27,33 @@ function idpasien() {
 }
 
 $idpasien = idpasien();
+
+//-----------------FUNGSI MEMBUAT ID KELUHAN-------------------
+function idkeluhan() {
+	$con = mysqli_connect('localhost','root','','mata');
+	$query = mysqli_query($con,"SELECT id_keluhan FROM keluhan ORDER BY id_keluhan DESC LIMIT 0,1") or die(mysql_error());
+	list ($no_temp) = mysqli_fetch_row($query);
+
+	if ($no_temp == '') {
+		$no_urut = 'K01';
+
+		} else {
+		$jum = substr($no_temp,1,3);
+		$jum++;
+		if($jum <= 9) {
+			$no_urut = 'K0' . $jum;
+		}
+		elseif ($jum <= 99) {
+			$no_urut = 'K' . $jum;
+		}
+		else {
+			die("Nomor urut melebih batas");
+		}
+	}
+		return $no_urut;
+}
+
+$idkeluhan = idkeluhan();
 ?>
 
 <!doctype html>
@@ -82,12 +109,12 @@ $idpasien = idpasien();
 	   <div class="collapse navbar-collapse" id="navigation-index">
 	   	<ul class="nav navbar-nav navbar-right">
 				<li>
-					<a href="components-documentation.html" target="_blank">
+					<a href="riwayat.php">
 						<i class="material-icons">library_books</i> Riwayat
 					</a>
 				</li>
 				<li>
-					<a href="login.php" target="_blank">
+					<a href="login.php">
 						<i class="material-icons">power_setting_new</i> Logout
 					</a>
 				</li>
@@ -139,7 +166,8 @@ $idpasien = idpasien();
 							<div class="tab-content">
 								<div class="col-md-12">
 									<div class="form-group label-floating">
-                                        <input type="hidden" class="form-control" name="id" value="<?php echo $idpasien; ?>">
+                    <input type="hidden" class="form-control" name="idpasien" value="<?php echo $idpasien; ?>">
+										<input type="hidden" class="form-control" name="idkeluhan" value="<?php echo $idkeluhan; ?>">
 										<label class="control-label">Nama Pasien</label>
 										<input type="text" class="form-control" name="nama" required>
 									</div>
@@ -206,19 +234,19 @@ $idpasien = idpasien();
 						<div class="content">
 							<div class="tab-content">
 								<p class="text-center">Centanglah hanya pada gejala-gejala yang dialami oleh mata anda.</p>
-								<?php
-                                  $gejala = mysqli_query($con, "SELECT * FROM gejala");
-                                  while ($row = mysqli_fetch_array($gejala)) { ?>
+
 								<div class="col-md-12">
+									<?php
+									$gejala = mysqli_query($con, "SELECT * FROM gejala");
+									while ($row = mysqli_fetch_array($gejala)) { ?>
 									<div class="checkbox">
 										<label>
-											<input type="checkbox" name="optionsCheckboxes">
-											<input type="hidden" name="idGej" value="<?php echo $row['id_gejala'];?>">
-                                            <?php echo $row['nm_gejala'];?>
+											<input type="checkbox" name="keluhan[]" value="<?php echo $row['id_gejala'];?>" >
+											<?php echo $row['nm_gejala'];?>
 										</label>
 									</div>
+									<?php } ?>
 								</div>
-								<?php } ?>
 							</div>
 						</div>
 						<!--END FORM GEJALA PASIEN-->
@@ -231,7 +259,7 @@ $idpasien = idpasien();
 						<h4>Sebelum anda klik tombol submit, pastikan data yang dicentang sesuai dengan gejala-gejala yang anda alami agar diagnosa yang kami berikan tepat dan benar</h4>
 					</div>
 					<div class="col-xs-8 col-xs-offset-2 col-sm-4 col-sm-offset-4">
-						<button type="submit" class="btn btn-primary btn-lg" name="submit">Submit</button>
+						<button type="submit" class="btn btn-primary btn-lg" name="tambah">Submit</button>
 					</div>
 				</div>
 </form>

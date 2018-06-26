@@ -1,15 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.1
--- https://www.phpmyadmin.net/
+-- version 4.5.1
+-- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 09, 2018 at 01:05 PM
+-- Generation Time: Jun 26, 2018 at 09:46 PM
 -- Server version: 10.1.16-MariaDB
 -- PHP Version: 5.6.24
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -117,12 +115,12 @@ INSERT INTO `casebase` (`id_casebase`, `id_penyakit`, `g1`, `g2`, `g3`, `g4`, `g
 
 CREATE TABLE `diagnosa` (
   `id_pasien` varchar(3) NOT NULL,
+  `id_keluhan` varchar(3) DEFAULT NULL,
   `nm_pasien` varchar(30) DEFAULT NULL,
   `jk` varchar(10) DEFAULT NULL,
   `alamat_pasien` varchar(50) DEFAULT NULL,
   `umur` int(2) DEFAULT NULL,
   `pekerjaan` varchar(20) DEFAULT NULL,
-  `gejala_gejala` text,
   `hasil_diagnosa` varchar(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -130,8 +128,9 @@ CREATE TABLE `diagnosa` (
 -- Dumping data for table `diagnosa`
 --
 
-INSERT INTO `diagnosa` (`id_pasien`, `nm_pasien`, `jk`, `alamat_pasien`, `umur`, `pekerjaan`, `gejala_gejala`, `hasil_diagnosa`) VALUES
-('P01', 'Ilham', 'Laki-laki', 'Jember', 21, 'Artis', '', '');
+INSERT INTO `diagnosa` (`id_pasien`, `id_keluhan`, `nm_pasien`, `jk`, `alamat_pasien`, `umur`, `pekerjaan`, `hasil_diagnosa`) VALUES
+('P01', 'K01', 'Handoko Sujatmiko', 'Laki-laki', 'Jalan Buntu', 25, 'Buruh Desain', ''),
+('P02', 'K02', 'Bu To', 'Perempuan', 'Perumahan Gak Jadi', 46, 'Asisten Rumah Tangga', '');
 
 -- --------------------------------------------------------
 
@@ -140,7 +139,7 @@ INSERT INTO `diagnosa` (`id_pasien`, `nm_pasien`, `jk`, `alamat_pasien`, `umur`,
 --
 
 CREATE TABLE `gejala` (
-  `id_gejala` varchar(6) NOT NULL,
+  `id_gejala` varchar(63) NOT NULL,
   `nm_gejala` varchar(100) DEFAULT NULL,
   `keterangan` text
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -150,31 +149,57 @@ CREATE TABLE `gejala` (
 --
 
 INSERT INTO `gejala` (`id_gejala`, `nm_gejala`, `keterangan`) VALUES
-('GEJ001', 'Mata Merah', NULL),
-('GEJ002', 'Mata Berair', NULL),
-('GEJ003', 'Mata Terasa Sakit dan Nyeri', NULL),
-('GEJ004', 'Mata Seperti Kelilipan', NULL),
-('GEJ005', 'Lengket di Pagi Hari', NULL),
-('GEJ006', 'Mata Terasa Panas', NULL),
-('GEJ007', 'Mata Gatal', NULL),
-('GEJ008', 'Tidak Tahan Cahaya (fotopobia)', NULL),
-('GEJ009', 'Mata Cepat Lelah', NULL),
-('GEJ010', 'Penurunan Penglihatan', NULL),
-('GEJ011', 'Terdapat Kotoran Mata', NULL),
-('GEJ012', 'Kelopak mata (palpebra) Bengkak warna merah ungu', NULL),
-('GEJ013', 'Kelopak Mata (palpelbra) Bengkak warna biru jingga', NULL),
-('GEJ014', 'Bintik Kecil dikelopak Mata', NULL),
-('GEJ015', 'Terdapat abses/kantong nanah', NULL),
-('GEJ016', 'Bayangan Pelangi', NULL),
-('GEJ017', 'Sakit Kepala', NULL),
-('GEJ018', 'Anemia (kurang darah)', NULL),
-('GEJ019', 'Bengkak Pada Meibon', NULL),
-('GEJ020', 'Peradangan Mata', NULL),
-('GEJ021', 'Penglihatan Kabur', NULL),
-('GEJ022', 'Sering Memicingkan Mata', NULL),
-('GEJ023', 'Pembengkakan di Kelopak Mata', NULL),
-('GEJ024', 'Penglihatan ganda/double terhadap benda', NULL),
-('GEJ025', 'Bulu Mata Rontok', NULL);
+('G01', 'Mata Merah', NULL),
+('G02', 'Mata Berair', NULL),
+('G03', 'Mata Terasa Sakit dan Nyeri', NULL),
+('G04', 'Mata Seperti Kelilipan', NULL),
+('G05', 'Lengket di Pagi Hari', NULL),
+('G06', 'Mata Terasa Panas', NULL),
+('G07', 'Mata Gatal', NULL),
+('G08', 'Tidak Tahan Cahaya (fotopobia)', NULL),
+('G09', 'Mata Cepat Lelah', NULL),
+('G10', 'Penurunan Penglihatan', NULL),
+('G11', 'Terdapat Kotoran Mata', NULL),
+('G12', 'Kelopak mata (palpebra) Bengkak warna merah ungu', NULL),
+('G13', 'Kelopak Mata (palpelbra) Bengkak warna biru jingga', NULL),
+('G14', 'Bintik Kecil dikelopak Mata', NULL),
+('G15', 'Terdapat abses/kantong nanah', NULL),
+('G16', 'Bayangan Pelangi', NULL),
+('G17', 'Sakit Kepala', NULL),
+('G18', 'Anemia (kurang darah)', NULL),
+('G19', 'Bengkak Pada Meibon', NULL),
+('G20', 'Peradangan Mata', NULL),
+('G21', 'Penglihatan Kabur', NULL),
+('G22', 'Sering Memicingkan Mata', NULL),
+('G23', 'Pembengkakan di Kelopak Mata', NULL),
+('G24', 'Penglihatan ganda/double terhadap benda', NULL),
+('G25', 'Bulu Mata Rontok', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `keluhan`
+--
+
+CREATE TABLE `keluhan` (
+  `id_keluhan` varchar(3) NOT NULL,
+  `id_gejala` varchar(6) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `keluhan`
+--
+
+INSERT INTO `keluhan` (`id_keluhan`, `id_gejala`) VALUES
+('K01', 'G02'),
+('K01', 'G04'),
+('K01', 'G08'),
+('K01', 'G09'),
+('K01', 'G12'),
+('K02', 'G01'),
+('K02', 'G07'),
+('K02', 'G20'),
+('K02', 'G24');
 
 -- --------------------------------------------------------
 
@@ -187,6 +212,13 @@ CREATE TABLE `login` (
   `username` varchar(20) DEFAULT NULL,
   `password` varchar(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `login`
+--
+
+INSERT INTO `login` (`id_login`, `username`, `password`) VALUES
+(101, 'dokter', 'dokter');
 
 -- --------------------------------------------------------
 
@@ -233,13 +265,22 @@ ALTER TABLE `casebase`
 -- Indexes for table `diagnosa`
 --
 ALTER TABLE `diagnosa`
-  ADD PRIMARY KEY (`id_pasien`);
+  ADD PRIMARY KEY (`id_pasien`),
+  ADD KEY `id_keluhan` (`id_keluhan`);
 
 --
 -- Indexes for table `gejala`
 --
 ALTER TABLE `gejala`
   ADD PRIMARY KEY (`id_gejala`);
+
+--
+-- Indexes for table `keluhan`
+--
+ALTER TABLE `keluhan`
+  ADD UNIQUE KEY `id_gejala_2` (`id_gejala`),
+  ADD KEY `id_gejala` (`id_gejala`),
+  ADD KEY `id_keluhan` (`id_keluhan`);
 
 --
 -- Indexes for table `login`
@@ -262,7 +303,12 @@ ALTER TABLE `penyakit`
 --
 ALTER TABLE `casebase`
   ADD CONSTRAINT `casebase_ibfk_1` FOREIGN KEY (`id_penyakit`) REFERENCES `penyakit` (`id_penyakit`);
-COMMIT;
+
+--
+-- Constraints for table `keluhan`
+--
+ALTER TABLE `keluhan`
+  ADD CONSTRAINT `keluhan_ibfk_1` FOREIGN KEY (`id_keluhan`) REFERENCES `diagnosa` (`id_keluhan`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
