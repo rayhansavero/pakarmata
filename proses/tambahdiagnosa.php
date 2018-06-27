@@ -17,14 +17,14 @@ if (isset($_POST['tambah'])) {
     foreach($_POST['keluhan'] as $tampung) {
 
       $query = mysqli_query($con,"INSERT INTO diagnosa VALUES ('$idpasien','$idkeluhan','$nama','$jk','$alamat','$umur','$pekerjaan','')") or die(mysql_error());
-      
+
       if($query){
         for($x=0;$x<$hitung;$x++){
           mysqli_query($con,"INSERT INTO keluhan values('$idkeluhan','$keluhan[$x]')");
         }
 
         echo "<script> alert ('Data Baru Berhasil di Tambahkan');
-				document.location='../riwayat.php';
+				document.location='hitung.php';
 				</script>";
       }
 
@@ -33,7 +33,7 @@ if (isset($_POST['tambah'])) {
         //document.location='../riwayat.php';
         //</script>";
         echo "<script> alert ('Data Baru Berhasil di Tambahkan');
-				document.location='../riwayat.php';
+				document.location='hitung.php';
 				</script>";
       }
     }

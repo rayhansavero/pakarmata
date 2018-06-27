@@ -173,7 +173,7 @@ $con = mysqli_connect('localhost','root','','mata');
     <footer class="footer">
 	    <div class="container">
 	        <div class="copyright pull-right">
-	            &copy; 2018, made with <i class="material-icons">favorite</i> by Creative Tim for a better web.
+	            &copy; 2018, made with <i class="material-icons">favorite</i> by Bocah Gaul.
 	        </div>
 	    </div>
 	</footer>

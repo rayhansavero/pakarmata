@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 26, 2018 at 09:46 PM
+-- Generation Time: Jun 27, 2018 at 04:59 AM
 -- Server version: 10.1.16-MariaDB
 -- PHP Version: 5.6.24
 
@@ -129,8 +129,8 @@ CREATE TABLE `diagnosa` (
 --
 
 INSERT INTO `diagnosa` (`id_pasien`, `id_keluhan`, `nm_pasien`, `jk`, `alamat_pasien`, `umur`, `pekerjaan`, `hasil_diagnosa`) VALUES
-('P01', 'K01', 'Handoko Sujatmiko', 'Laki-laki', 'Jalan Buntu', 25, 'Buruh Desain', ''),
-('P02', 'K02', 'Bu To', 'Perempuan', 'Perumahan Gak Jadi', 46, 'Asisten Rumah Tangga', '');
+('P01', 'K01', 'Handoko Sujatmiko', 'Laki-laki', 'Jalan Buntu', 34, 'Buruh Desain', ''),
+('P02', 'K02', 'Bu To', 'Perempuan', 'Jalan Terus Kapan Jadian', 23, 'Asisten Rumah Tangga', '');
 
 -- --------------------------------------------------------
 
@@ -139,7 +139,7 @@ INSERT INTO `diagnosa` (`id_pasien`, `id_keluhan`, `nm_pasien`, `jk`, `alamat_pa
 --
 
 CREATE TABLE `gejala` (
-  `id_gejala` varchar(63) NOT NULL,
+  `id_gejala` varchar(3) NOT NULL,
   `nm_gejala` varchar(100) DEFAULT NULL,
   `keterangan` text
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -183,7 +183,7 @@ INSERT INTO `gejala` (`id_gejala`, `nm_gejala`, `keterangan`) VALUES
 
 CREATE TABLE `keluhan` (
   `id_keluhan` varchar(3) NOT NULL,
-  `id_gejala` varchar(6) NOT NULL
+  `id_gejala` varchar(3) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -193,13 +193,13 @@ CREATE TABLE `keluhan` (
 INSERT INTO `keluhan` (`id_keluhan`, `id_gejala`) VALUES
 ('K01', 'G02'),
 ('K01', 'G04'),
-('K01', 'G08'),
-('K01', 'G09'),
-('K01', 'G12'),
+('K01', 'G06'),
+('K01', 'G07'),
 ('K02', 'G01'),
-('K02', 'G07'),
-('K02', 'G20'),
-('K02', 'G24');
+('K02', 'G02'),
+('K02', 'G06'),
+('K02', 'G09'),
+('K02', 'G17');
 
 -- --------------------------------------------------------
 
@@ -278,9 +278,8 @@ ALTER TABLE `gejala`
 -- Indexes for table `keluhan`
 --
 ALTER TABLE `keluhan`
-  ADD UNIQUE KEY `id_gejala_2` (`id_gejala`),
-  ADD KEY `id_gejala` (`id_gejala`),
-  ADD KEY `id_keluhan` (`id_keluhan`);
+  ADD KEY `id_keluhan` (`id_keluhan`),
+  ADD KEY `id_gejala` (`id_gejala`);
 
 --
 -- Indexes for table `login`
@@ -308,7 +307,8 @@ ALTER TABLE `casebase`
 -- Constraints for table `keluhan`
 --
 ALTER TABLE `keluhan`
-  ADD CONSTRAINT `keluhan_ibfk_1` FOREIGN KEY (`id_keluhan`) REFERENCES `diagnosa` (`id_keluhan`);
+  ADD CONSTRAINT `keluhan_ibfk_1` FOREIGN KEY (`id_keluhan`) REFERENCES `diagnosa` (`id_keluhan`),
+  ADD CONSTRAINT `keluhan_ibfk_2` FOREIGN KEY (`id_gejala`) REFERENCES `gejala` (`id_gejala`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

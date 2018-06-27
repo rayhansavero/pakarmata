@@ -88,7 +88,7 @@ $idkeluhan = idkeluhan();
 	<div class="container">
 
 		<div class="navbar-header">
-			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-index">\
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-index">
 				<span class="sr-only">Toggle navigation</span>
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
@@ -233,14 +233,15 @@ $idkeluhan = idkeluhan();
 						<!--FORM GEJALA PASIEN-->
 						<div class="content">
 							<div class="tab-content">
-								<p class="text-center">Centanglah hanya pada gejala-gejala yang dialami oleh mata anda.</p>
+								<!--h4 class="text-center">Centanglah hanya pada gejala-gejala yang dialami oleh mata anda.</h4-->
 
 								<div class="col-md-12">
+									<br>
 									<?php
 									$gejala = mysqli_query($con, "SELECT * FROM gejala");
 									while ($row = mysqli_fetch_array($gejala)) { ?>
 									<div class="checkbox">
-										<label>
+										<label style="color:#1d1d1d;">
 											<input type="checkbox" name="keluhan[]" value="<?php echo $row['id_gejala'];?>" >
 											<?php echo $row['nm_gejala'];?>
 										</label>
@@ -271,7 +272,7 @@ $idkeluhan = idkeluhan();
     <footer class="footer">
 	    <div class="container">
 	        <div class="copyright pull-right">
-	            &copy; 2018, made with <i class="material-icons">favorite</i> by Creative Tim for a better web.
+	            &copy; 2018, made with <i class="material-icons">favorite</i> by Bocah Gaul.
 	        </div>
 	    </div>
 	</footer>
