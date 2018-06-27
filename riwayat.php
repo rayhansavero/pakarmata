@@ -46,7 +46,7 @@ $con = mysqli_connect('localhost','root','','mata');
 						<img src="assets/img/logo.png" >
 					</div>
 					<div class="brand">
-						Creative Tim
+						Bocah <br> Gaul
 					</div>
 				</div>
 	    </a>
@@ -155,7 +155,7 @@ $con = mysqli_connect('localhost','root','','mata');
 												}
 												?>
 											</td>
-											<td><?php echo $data[7]; ?></td>											
+											<td><?php echo $data[7]; ?></td>
 										</tr>
 										<?php } ?>
 									</tbody>

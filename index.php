@@ -100,7 +100,7 @@ $idkeluhan = idkeluhan();
 						<img src="assets/img/logo.png" >
 					</div>
 					<div class="brand">
-						Creative Tim
+						Bocah <br> Gaul
 					</div>
 				</div>
 	    </a>
